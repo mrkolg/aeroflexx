@@ -1,0 +1,59 @@
+@import "icomoon-variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?pj8p2n') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?pj8p2n') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?pj8p2n##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-instagram {
+  &:before {
+    content: $icon-instagram;
+  }
+}
+.icon-linkedin-square {
+  &:before {
+    content: $icon-linkedin-square;
+  }
+}
+.icon-twitter-square {
+  &:before {
+    content: $icon-twitter-square;
+  }
+}
+.icon-facebook-square {
+  &:before {
+    content: $icon-facebook-square;
+  }
+}
+.icon-play {
+  &:before {
+    content: $icon-play;
+  }
+}
+.icon-linkedin {
+  &:before {
+    content: $icon-linkedin;
+  }
+}
+

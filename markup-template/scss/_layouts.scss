@@ -1,0 +1,912 @@
+/* HERO */
+
+.hero {
+  position: relative;
+  // background: url('../img/hero-bg.png') 50% 50% no-repeat;
+  // background-size: cover;
+  overflow: hidden;
+  margin-bottom: vw(-196, 1440);
+
+  @include media("<phone") {
+    margin-bottom: 0;
+    padding-bottom: 20px;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    // min-height: 100vh;
+
+    @include media("<phone") {
+      flex-direction: column;
+    }
+
+
+    img {
+      user-select:  none;
+    }
+  }
+
+  &-sm-bg {
+    @include media("<tablet") {
+      height: 90vw;
+    }
+
+    img {
+      @include media("<tablet") {
+        max-width: inherit;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &-img {
+    width: 100%;
+  }
+
+  &-left {
+    $mr: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: calc(50.5% - #{$mr});
+    max-width: calc(50.5% - #{$mr});
+    position: relative;
+    padding-top: vw(175, 1440);
+    margin-right: $mr;
+
+    @include media("<tablet") {
+      flex-basis: calc(45% - #{$mr});
+      max-width: calc(45% - #{$mr});
+      padding-top: vw(450);
+    }
+    @include media("<phone") {
+      width: 100%;
+      flex-basis: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding-top: 130px;
+    }
+  }
+
+  &-right {
+    flex-basis: 49.5%;
+    max-width: 49.5%;
+
+    @include media("<tablet") {
+      flex-basis: 55%;
+      max-width: 55%;
+    }
+    @include media("<phone") {
+      width: 100%;
+      flex-basis: 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .headline {
+      margin-top: vw(155);
+    }
+
+    .headline-title {
+      margin: 0 0 36px;
+
+      @include media("<tablet") {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &-img {
+    text-align: right;
+
+    @include media("<phone") {
+      max-width: 100px;
+      margin: 0 auto;
+    }
+  }
+
+  &-cart {
+    position: relative;
+
+    &.sm {
+      // max-width: 146px;
+      max-width: vw(146, 1440);
+      min-width: 100px;
+      transform: translateX(-49px);
+
+      @include media("<phone") {
+        display: none;
+      }
+    }
+    &.md {
+      position:absolute;
+      top:50%;
+      right: vw(232, 1440);
+      transform: translateY(-50%);
+      margin-top: 89px;
+
+      @include media("<ipad-pro") {
+        right: auto;
+        left: 3.5vw;
+      }
+      @include media("<desktop") {
+        display: none;
+      }
+
+      h3 {
+        left: auto;
+        right: 100%;
+        bottom: 31px;
+        margin: 0 -57px 0 0;
+
+        @include media("<ipad-pro") {
+          margin: 0 0 0 -70px;
+          right: auto;
+          left: 100%;
+        }
+      }
+    }
+
+    h3 {
+      position: absolute;
+      left: 100%;
+      bottom: 23px;
+      font-size: 14px;
+      font-weight: 400;
+      white-space: nowrap;
+      margin: 0 0 0 -11px;
+    }
+
+    .headline {
+      position: absolute;
+      right: 50%;
+      top: 125px;
+      margin: 0 -29px 0 0;
+      font-weight: 400;
+      white-space: nowrap;
+
+      @include media("<ipad-pro") {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+      }
+    }
+
+  }
+
+  &-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+}
+
+/* HERO */
+
+/* GRID */
+
+.grid {
+  $gutter: 10px;
+
+  // display: flex;
+  // flex-wrap: wrap;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 35px 0 10px;
+  // overflow: hidden;
+
+  %default-size {
+    width: calc(25% - (#{$gutter} * 2));
+    margin: $gutter;
+
+    @include media('<desktop') {
+      width: calc(50% - (#{$gutter} * 2));
+    }
+    @include media('<sm-phone') {
+      width: calc(100% - (#{$gutter} * 2));
+    }
+  }
+
+  &-sizer {
+    @extend %default-size;
+  }
+
+  .item {
+    @extend %default-size;
+
+    @include media('<=full') {
+      &-sm {
+        height: 190.5px;
+      }
+
+      &-md {
+        height: 401px;
+      }
+
+      &-lg {
+        height: 401px;
+      }
+    }
+
+    @include media('<desktop') {
+      &-sm {
+        min-height: vw(190.5);
+        height: auto;
+      }
+
+      &-md {
+        min-height: vw(401);
+        height: auto;
+      }
+
+      &-lg {
+        min-height: vw(401);
+        height: auto;
+      }
+    }
+
+
+    &-lg {
+      width: calc(50% - (#{$gutter} * 2));
+      @include media('<sm-phone') {
+        width: calc(100% - (#{$gutter} * 2));
+      }
+    }
+  }
+
+  @include media('<sm-phone') {
+    $gutter: 15px;
+    &-sizer {
+      margin: $gutter;
+    }
+    .item  {
+      margin: 10px $gutter;
+      width: calc(100% - (#{$gutter} * 2));
+    }
+  }
+
+}
+
+/* GRID */
+
+/* FILTER */
+
+.filter {
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .btn-group {
+      margin: 15px;
+    }
+
+    .btn {
+      &.is-active {
+        background: $crimson;
+        border-color: $crimson;
+        color: $white;
+        pointer-events: none;
+        cursor: default;
+      }
+    }
+  }
+
+  @include media('<phone') {
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+/* FILTER */
+
+/* PREVIEW */
+
+.previews {
+  position: relative;
+  padding: 60px 0 20px;
+  &:last-child{
+    padding-bottom: 0;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: calc(100% - 20px);
+    left: 0;
+    width: 100%;
+    height: 350px;
+    background: #fff;
+    z-index: -1;
+  }
+}
+
+/* PREVIEW */
+
+/* TEAMS */
+
+.teams {
+  padding: 10px 0 20px;
+  @include media('<tablet') {
+    padding-top: 0;
+  }
+}
+
+/* TEAMS */
+
+
+/* PRODUCTS */
+
+.products {
+  $this: &;
+  &:not(.mt) {
+    overflow: hidden;
+  }
+  // margin-top: -75px;
+  padding: vw(318, 1440) 0 1px;
+  margin-bottom: -39px;
+  // background: linear-gradient(to bottom, #f9f9f9, #ebebeb);
+  background: url('../img/products-bg.png') no-repeat 50% 0;
+  background-size: cover;
+
+  @include media("<tablet") {
+    margin-top: -230px;
+    padding-top: 350px;
+  }
+
+  @include media("<phone") {
+    margin-top: 0;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    background-size: contain;
+  }
+
+  &.mt {
+    position: relative;
+    padding-top: 9.8vw;
+    margin-top: vw(-332, 1440);
+    padding-bottom: 59px;
+    z-index: 1;
+
+    @include media("<xl") {
+      padding-top: 3vw;
+      padding-bottom: 9.8vw;
+    }
+    @include media("<ipad-pro") {
+      padding-top: 20vw;
+      margin-top: -23vw;
+      padding-bottom: 2vw;
+      margin-bottom: -11vw;
+      background-size: contain;
+    }
+    @include media("<tablet") {
+      padding-bottom: 0;
+      margin-bottom: -15vw;
+    }
+    @include media("<xs-phone") {
+      padding-bottom: -17vw;
+    }
+
+    .headline {
+      padding-bottom: 31px;
+    }
+
+    .products-right {
+      .headline {
+        padding-bottom: 0;
+      }
+      .products-links-pag {
+        bottom: -7px;
+
+        @include media(">xl") {
+          bottom: 0.5vw;
+        }
+
+        @include media("<ipad-pro") {
+          bottom: 0.5vw;
+        }
+        @include media("<=desktop") {
+          bottom: -3vw;
+        }
+        @include media("<desktop") {
+          bottom: 0;
+        }
+        @include media("<tablet") {
+          bottom: 2.3vw;
+        }
+        @include media("<phone") {
+          bottom: 0;
+        }
+      }
+    }
+  }
+
+  &-wrap {
+    transform: translateY(135px);
+
+    @include media("<xl") {
+      transform: translateY(209px);
+    }
+
+    @include media("<ipad-pro") {
+      transform: none;
+    }
+  }
+
+  &-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 147px;
+    margin-top: -56px;
+
+    @include media("<desktop") {
+      padding-top: 50px;
+      margin-top: -25px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 215px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: $tamarillo;
+    }
+
+    // special
+    .headline {
+      &-title {
+        margin-bottom: 33px;
+
+        @include media("<tablet") {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .headline-subtitle {
+      max-width: 328px;
+
+      @include media("<phone") {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  &-left,
+  &-center,
+  &-right {
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin: 35px;
+  }
+
+  &-left {
+    flex-basis: 31.5%;
+    max-width: 31.5%;
+
+    #{$this}-links {
+      margin-top: -10px;
+    }
+
+    .products-links-pag {
+      bottom: -16px;
+
+      @include media(">xl") {
+        bottom: -2.3vw;
+      }
+
+      @include media("<ipad-pro") {
+        bottom: -3vw;
+      }
+      @include media("<desktop") {
+        bottom: -0.5vw;
+      }
+      @include media("<tablet") {
+        bottom: -2vw;
+      }
+      @include media("<phone") {
+        bottom: 0;
+      }
+    }
+  }
+
+  &-links {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3vw;
+
+    @include media("<xl") {
+      padding-bottom: 3vw;
+    }
+  }
+
+  &-center {
+    position: relative;
+    flex-basis: 24.5%;
+    max-width: 24.5%;
+    margin: 10px;
+    margin-top: vw(-60);
+    z-index: 1;
+    user-select: none;
+
+    @include media("<macbook") {
+      margin-top: 0;
+    }
+    @include media("<desktop") {
+      padding-bottom: 25px;
+    }
+    @include media("<phone") {
+      padding-bottom: 0;
+    }
+  }
+
+  &-right {
+    flex-basis: 31.5%;
+    max-width: 31.5%;
+
+    #{$this}-links {
+      padding-bottom: 5.8vw;
+      bottom: 0;
+
+      @include media("<xl") {
+        padding-bottom: 7.5vw;
+      }
+      @include media("<tablet") {
+        padding-bottom: 11.5vw;
+      }
+    }
+  }
+
+  &-links {
+    @include media("<tablet") {
+      padding-bottom: 20px;
+      margin-bottom: 50px;
+    }
+
+    .product {
+      flex-shrink: 1;
+      flex-grow: 1;
+      flex-basis: 25%;
+      max-width: 25%;
+      padding: 0 5px;
+      outline: none;
+    }
+  }
+
+  .headline-title {
+    margin-bottom: 37px;
+
+    @include media("<tablet") {
+      margin-bottom: 20px;
+    }
+  }
+
+  // @include media('<=macbook') {
+  //   background-size: contain;
+  // }
+
+  @include media('<macbook') {
+    &-container {
+      padding-top: 75px;
+      &:before {
+        top: 145px;
+      }
+    }
+    &-left {
+      br {
+        display: none;
+      }
+    }
+  }
+
+  @include media('<ipad-pro') {
+
+    &-container {
+      flex-wrap: wrap;
+      &:before {
+        display: none;
+      }
+    }
+
+    &-left,
+    &-right {
+      flex-basis: calc(50% - 70px);
+      max-width: calc(50% - 70px);
+    }
+
+    &-center {
+      order: -1;
+      flex-basis: 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+  }
+
+  @include media('<desktop') {
+
+    &-left,
+    &-right {
+      margin: 0;
+      flex-basis: calc(50% - 10px);
+      max-width: calc(50% - 10px);
+    }
+
+    &-links {
+      $margin: 5px;
+      flex-wrap: wrap;
+      .product {
+        margin-bottom: 25px;
+        flex-basis: calc(50% - #{$margin} * 2);
+        max-width: calc(50% - #{$margin} * 2);
+
+        &-text {
+          margin-top: 15px;
+        }
+        &-list {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+
+  @include media('<phone') {
+
+    &-links {
+      $margin: 5px;
+      .product {
+        flex-basis: calc(25% - #{$margin} * 2);
+        max-width: calc(25% - #{$margin} * 2);
+      }
+    }
+
+    &-center {
+      margin-bottom: 40px;
+    }
+
+    &-left,
+    &-right {
+      flex-basis: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+
+  }
+
+  @include media('<xs-phone') {
+
+    &-links {
+      $margin: 5px;
+      .product {
+        flex-basis: calc(50% - #{$margin} * 2);
+        max-width: calc(50% - #{$margin} * 2);
+      }
+    }
+
+  }
+
+}
+
+/* PRODUCTS */
+
+/* PRODUCTS-LIST */
+
+.products-list {
+  $gutter: 9px;
+
+  &-container {
+    margin-top: 25px;
+    margin-left: -($gutter);
+    margin-right: -($gutter);
+
+    &.slick-initialized {
+      .product {
+        display: block;
+      }
+    }
+  }
+
+  .product {
+    display: none;
+    margin: 0 $gutter;
+    text-decoration: none;
+
+    img {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .pagination {
+    text-align: center;
+    .slick-arrow {
+      float: none;
+      display: inline-block;
+    }
+  }
+
+}
+
+/* PRODUCTS-LIST */
+
+/* STEPS */
+
+.steps {
+  $gutter: 10px;
+  position: relative;
+  padding: vw(200) 0 20px;
+  margin-top: vw(-65);
+
+  @include media("<ipad-pro") {
+    padding-top: vw(300);
+  }
+
+  .footer-upper & {
+    padding: 0;
+    margin: 0;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 914px;
+    background: url('../img/steps-bg.png') no-repeat 50% 0;
+    background-size: cover;
+    z-index: -1;
+    @include media('landscape') {
+      background-image: url('../img/steps-bg@2x.png');
+    }
+    @include media('<=macbook') {
+      background-size: contain;
+    }
+
+    .footer-upper & {
+      display: none;
+    }
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    counter-reset: step;
+    margin-left: -($gutter);
+    margin-right: -($gutter);
+  }
+
+  .step {
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: calc(20% - #{$gutter} * 2);
+    max-width: calc(20% - #{$gutter} * 2);
+    margin: 30px $gutter 0;
+
+    .footer-upper & {
+      flex-basis: calc(25% - #{$gutter} * 2);
+      max-width: calc(25% - #{$gutter} * 2);
+      margin-top: 0;
+
+      @include media("<phone") {
+        flex-basis: calc(50% - #{$gutter} * 2);
+        max-width: calc(50% - #{$gutter} * 2);
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  @include media('<=tablet') {
+    padding-top: vw(300);
+
+    &-container {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .step {
+      flex-basis: calc(33.33% - #{$gutter} * 2);
+      max-width: calc(33.33% - #{$gutter} * 2);
+    }
+  }
+
+  @include media('<phone') {
+    .step {
+      flex-basis: calc(50% - #{$gutter} * 2);
+      max-width: calc(50% - #{$gutter} * 2);
+    }
+  }
+
+  @include media('<=xs-phone') {
+    .step {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+
+}
+
+.gray-bg-footer .footer{
+  background-color: #3e3e3d;
+}
+
+/* STEPS */
+
+/* ACHIEVEMENTS */
+.achievements {
+  padding: 26px 0 50px;
+  h2 {
+    margin-bottom: 15px;
+  }
+}
+.achievements_block {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+  @include media("<desktop") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media("<=460px") {
+    grid-template-columns: 1fr;
+  }
+}
+.achievements_item {
+  text-align: center;
+}
+.achievements_img {
+  padding: 10px 10px 29px;
+  @include media("<phone") {
+    padding: 10px 10px 10px;
+  }
+  img {
+    @include media("<phone") {
+      width: 70px;
+    }
+  }
+}
+.achievements_name {
+  color: #3e3e3d;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 23px;
+  margin-bottom: 4px;
+}
+
+.achievements_amount {
+  font-size: rem(36px);
+  line-height: 1;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.achievements_text {
+  color: #3e3e3d;
+  font-size: 12px;
+  line-height: 16px;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ACHIEVEMENTS */

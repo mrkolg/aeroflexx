@@ -1,0 +1,45 @@
+.header {
+  position: relative;
+  z-index: 12;
+
+  &.absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    // padding: 43px 50px;
+    padding: 3vw 3.4vw;
+  }
+
+  .menu-btn {
+    padding-top: 3px;
+    &:hover {
+      .line {
+        // #2
+        span {
+          transform: translate3d(-12.2px, 0, 0);
+        }
+
+        // #3
+        &:after {
+          transform: translate3d(-24.5px, 0, 0);
+        }
+
+      }
+    }
+  }
+
+  @include media('<=tablet') {
+    &-container {
+      padding: 25px 0;
+    }
+  }
+
+}

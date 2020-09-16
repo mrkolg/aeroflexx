@@ -1,0 +1,285 @@
+//
+//Variable for button
+//
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 150 !default;
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark: #000 !default;
+$yiq-text-light: #fff !default;
+//how much persent darker to do colors when button hover
+$button-hover-darken-persent: 15% !default;
+
+//
+// function Color contrast (what color to use #000 or #fff)
+//
+
+@function color-yiq($color) {
+	$r: red($color);
+	$g: green($color);
+	$b: blue($color);
+	$yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+	@if ($yiq >=$yiq-contrasted-threshold) {
+		@return $yiq-text-dark;
+	}
+
+	@else {
+		@return $yiq-text-light;
+	}
+}
+
+//
+// Button variants mixins
+//
+
+@mixin button-variant ($background: $fon-brand,
+											$color: color-yiq($background),
+											$border: $background,
+											$hover-background: darken($background, $button-hover-darken-persent),
+											$hover-color: color-yiq($hover-background),
+											$hover-border: darken($border, $button-hover-darken-persent)) {
+	color: $color;
+	background-color: $background;
+	border-color: $border;
+
+	&:hover,
+	&:focus {
+		color: $hover-color;
+		background-color: $hover-background;
+		border-color: $hover-border;
+	}
+}
+
+@mixin button-outline-variant($color: $color-brand,
+															$color-hover: color-yiq($color),
+															$hover-background: $color,
+															$color-border: $color,
+															$hover-border: $color-hover) {
+	color: $color;
+	background-color: transparent;
+	background-image: none;
+	border-color: $color-border;
+
+	&:hover {
+		color: $color-hover;
+		background-color: $hover-background;
+		border-color: $hover-border;
+	}
+}
+
+//
+// Button sizes mixin
+//
+
+@mixin button-size($padding-y:10px, $padding-x:15px, $font-size:16px, $border-radius:0px, $border-width: 1px, $line-height:1.1) {
+	padding: $padding-y $padding-x;
+	font-size: $font-size;
+	border-radius: $border-radius;
+	border-width: $border-width;
+	line-height: $line-height;
+}
+
+//
+//-------------------style for button
+//
+
+//
+// Base styles for button
+//
+
+.btn {
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border-style: solid;
+	transition: $btn-transition;
+	user-select: none;
+	outline: none;
+
+	//variable located markup-template/scss/base/variables.scss
+	//size button mixin
+	// $btn-padding-y | $btn-padding-x | $btn-font-size | $btn-radius | $btn-border-width | $btn-line-height
+	@include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-radius, $btn-border-width, $btn-line-height);
+	//color button mixin $background | $color | $border | $hover-background | $hover-color | $hover-border
+	@include button-variant($btn-bg-color, $crimson, $btn-bg-color, $crimson, $white, $crimson);
+
+	color: $white;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.btn-red{
+	&:hover{
+		background-color: lighten($btn-bg-color, 10%);
+		border-color: lighten($btn-bg-color, 10%);
+	}
+}
+
+.btn-white {
+	//color button mixin $background | $color | $border | $hover-background | $hover-color | $hover-border
+	@include button-variant($white, $crimson, $white, $crimson, $white, $crimson);
+
+	span {
+		display: block;
+		color: $crimson;
+		transition: color $animation-speed $animation-name;
+
+		@supports (-webkit-background-clip: text) {
+			color: transparent;
+			background: linear-gradient(to bottom, $crimson 50%, $tamarillo);
+			-webkit-background-clip: text;
+	    }
+	    @supports (background-clip: text) {
+			color: transparent;
+			background: linear-gradient(to bottom, $crimson 50%, $tamarillo);
+			background-clip: text;
+	    }
+	    @supports (-ms-ime-align:auto) {
+	    	color: $crimson;
+	    }
+	}
+}
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+	@include button-size(9px, 21px, 14px, 10px, 3px, 1.4);
+	font-weight: 600;
+	letter-spacing: 1px;
+
+	@include media("<phone") {
+		padding: 8px 12px 5px;
+		letter-spacing: 0;
+	}
+
+	&:hover,
+	&:focus {
+		span {
+			color: $white;
+		}
+	}
+}
+
+.btn-lg.play {
+	position: relative;
+	padding: 18px 21px 18px 63px;
+
+	@include media("<phone") {
+		padding: 10px 12px 10px 40px;
+		letter-spacing: 0;
+	}
+
+	[class^="icon-"], [class*=" icon-"] {
+		position:absolute;
+		top:50%;
+		left:20px;
+		transform:translateY(-50%);
+		font-size: 36px;
+		margin-right: 6px;
+		color: $crimson;
+		transition: color $animation-speed $animation-name;
+
+		@include media("<phone") {
+			left: 9px;
+			font-size: 26px;
+		}
+
+		@supports (-webkit-background-clip: text) {
+			color: transparent;
+			background: linear-gradient(to bottom, $crimson 50%, $tamarillo);
+			-webkit-background-clip: text;
+	    }
+	    @supports (background-clip: text) {
+			color: transparent;
+			background: linear-gradient(to bottom, $crimson 50%, $tamarillo);
+			background-clip: text;
+	    }
+	    @supports (-ms-ime-align:auto) {
+	    	color: $crimson;
+	    }
+	}
+
+	&:hover {
+		[class^="icon-"], [class*=" icon-"] {
+			color: $white;
+		}
+	}
+}
+
+.btn-sm {
+	@include button-size(3px, 10px, 20px, 3px, 2px, 1.2);
+}
+
+
+//
+// Link buttons. Make a button look and behave like a link
+//
+
+.btn-link {
+	color: $color-brand;
+	background-color: transparent;
+	border-color: transparent;
+	transition: all $animation-speed $animation-name;
+
+	&:hover,
+	&:focus {
+		color: darken($color-brand, $button-hover-darken-persent);
+		text-decoration: none;
+		background-color: transparent;
+		border-color: transparent;
+	}
+}
+
+//
+// Block button
+//
+
+.btn-block {
+	display: block;
+	width: 100%;
+
+	// Vertically space out multiple block buttons
+	+.btn-block {
+		margin-top: 15px;
+	}
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	&.btn-block {
+		width: 100%;
+	}
+}
+
+// group
+
+.btn-group {
+	display: inline-flex;
+	.btn {
+		border-radius: 0;
+		&:first-child {
+			border-top-left-radius: $btn-radius;
+			border-bottom-left-radius: $btn-radius;
+		}
+		&:last-child {
+			border-top-right-radius: $btn-radius;
+			border-bottom-right-radius: $btn-radius;
+		}
+		@include media('<phone') {
+			&:first-child {
+				border-top-right-radius: $btn-radius;
+				border-bottom-left-radius: 0;
+			}
+			&:last-child {
+				border-top-right-radius: 0;
+				border-bottom-left-radius: $btn-radius;
+			}
+		}
+	}
+}
